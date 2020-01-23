@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+    linux-app-container:
+        build: .
+        volumes:
+            - ".:/usr/src/linux-app"
+        command: sh build-and-run.sh
