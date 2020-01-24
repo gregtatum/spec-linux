@@ -1,6 +1,10 @@
-#include <stdio.h> // printf
-#include <stdlib.h> // Include exit()
+/**
+ * This file contains the test suite implementation. The declarations are located
+ * in the base.h file.
+ */
+#include "base.h"
 
+// Useful colors:
 // Reset: \e[0m
 // Green: \e[32m
 // Red: \e[31

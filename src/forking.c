@@ -1,7 +1,9 @@
+#include "base.h"
+
 enum ForkVariant {
-  PARENT,
-  CHILD,
-  FAILURE,
+  FORK_PARENT,
+  FORK_CHILD,
+  FORK_FAILURE,
 };
 
 struct ForkResult {
@@ -16,11 +18,11 @@ struct ForkResult forkProcess() {
 
   // Determine the result variant based on the pid.
   if (result.pid == -1) {
-    result.variant = FAILURE;
+    result.variant = FORK_FAILURE;
   } else if (result.pid > 0) {
-    result.variant = PARENT;
+    result.variant = FORK_PARENT;
   } else {
-    result.variant = CHILD;
+    result.variant = FORK_CHILD;
   }
 
   return result;
@@ -29,18 +31,18 @@ struct ForkResult forkProcess() {
 void test_forking() {
   struct ForkResult result = forkProcess();
   switch (result.variant) {
-    case PARENT:
+    case FORK_PARENT:
       describe("Test forking parent");
       // Parent process.
       ok(result.pid != getpid(), "We are in the parent process, and the child PID is not the same.");
       break;
-    case CHILD:
+    case FORK_CHILD:
       describe("Test forking child");
       // Child process.
       equal_uint(result.pid, 0, "In the child process, the pid is 0");
       exit(0);
       break;
-    case FAILURE:
+    case FORK_FAILURE:
       ok(false, "The process failed to launch");
       break;
   }

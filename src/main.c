@@ -1,9 +1,4 @@
-#include <stdbool.h>
-#include <sys/types.h> // Contains some base types
-#include <sys/syscall.h>
-#include <unistd.h> // Contains the syscall interfaces
-#include "./test-utils.c"
-#include "./forking.c"
+#include "base.h"
 
 void test_basic_system_call() {
   describe("Test basic system calls.");
