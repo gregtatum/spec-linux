@@ -4,4 +4,4 @@ services:
         build: .
         volumes:
             - ".:/usr/src/linux-app"
-        command: sh build-and-run.sh
+        command: sh bin/docker-up.sh

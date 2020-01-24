@@ -14,7 +14,7 @@ void ok(bool assertion, char* message) {
   if (assertion) {
     printf("  \e[32m✓\e[0m %s\n", message);
   } else {
-    printf("  \e[31x\e[0m %s\n", message);
+    printf("  \e[31mx\e[0m %s\n", message);
     exit(1);
   }
 }
@@ -23,8 +23,18 @@ void equal_int(int a, int b, char* message) {
   if (a == b) {
     printf("  \e[32m✓\e[0m %s\n", message);
   } else {
-    printf("  \e[31x\e[0m %s\n", message);
-    printf("    %i != %i\n", a, b);
+    printf("  \e[31mx %s\n", message);
+    printf("    %i != %i\e[0m\n", a, b);
+    exit(1);
+  }
+}
+
+void equal_uint(uint a, uint b, char* message) {
+  if (a == b) {
+    printf("  \e[32m✓\e[0m %s\n", message);
+  } else {
+    printf("  \e[31mx %s\n", message);
+    printf("    %u != %u\e[0m\n", a, b);
     exit(1);
   }
 }
